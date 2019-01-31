@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const Contact = require('../models/Contact');
+
 router.get('/', (req, res, next) => {
     res.status(200).json({
         message : 'All contacts'
@@ -8,14 +10,21 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    const name = req.body.name;
-    const email = req.body.email;
 
-    res.status(200).json({
-        message: 'POST call',
-        name: name,
-        email: email
+    const contact = new Contact({
+        name: req.body.name,
+        phone: req.body.phone,
+        email: req.body.email,
     });
+
+    contact.save()
+        .then(data => {
+            res.status(201).json({
+                message: 'Contact added',
+                data: data
+            })
+        })
+        .catch(err => console.log(err));
 });
 
 router.get('/:id', (req, res, next) => {

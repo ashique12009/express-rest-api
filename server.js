@@ -3,8 +3,20 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const contactRoute = require('./api/routes/contact');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
-// App/package using initialising related code 
+// DB connection 
+mongoose.connect('mongodb://localhost:27017/contacts-db');
+const db = mongoose.connection;
+db.on('error', (err) => {
+    console.log(err);
+});
+
+db.once('open', () => {
+    console.log('Database connected!');
+});
+
+// Package using statements/initialising related code 
 const app = express();
 app.use(morgan('dev'));
 app.use(cors());
