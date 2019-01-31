@@ -1,0 +1,23 @@
+{
+  "name": "express-rest-api",
+  "version": "1.0.0",
+  "description": "A rest api by express JS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashique12009/express-rest-api.git"
+  },
+  "keywords": [
+    "REST",
+    "API"
+  ],
+  "author": "Ashique",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
