@@ -6,12 +6,7 @@ router.get('/', contactController.getAllContactController);
 
 router.post('/', contactController.postNewContactController);
 
-router.get('/:id', (req, res, next) => {
-    const id = req.params.id;
-    res.status(200).json({
-        message: `ID is : ${id}`
-    });
-});
+router.get('/:id', contactController.getSingleContact);
 
 router.put('/:id', (req, res, next) => {
     const id = req.params.id;
@@ -20,11 +15,6 @@ router.put('/:id', (req, res, next) => {
     });
 });
 
-router.delete('/:id', (req, res, next) => {
-    const id = req.params.id;
-    res.status(200).json({
-
-    });
-});
+router.delete('/:id', contactController.deleteContact);
 
 module.exports = router;

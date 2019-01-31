@@ -34,7 +34,45 @@ const postNewContactController = (req, res, next) => {
         .catch(err => console.log(err));
 }
 
+const getSingleContact = (req, res, next) => {
+    let id = req.params.id;
+    
+    Contact.findById(id)
+        .then(data => {
+            res.status(200).json({
+                message: 'Data fetched',
+                data: data
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: 'Error',
+                data: err
+            });
+        });
+}
+
+const deleteContact = (req, res, next) => {
+    let id = req.params.id;
+
+    Contact.findByIdAndRemove(id)
+        .then(data => {
+            res.status(200).json({
+                message: 'Contact deleted',
+                data: data
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: 'Error',
+                data: err
+            });
+        });
+}
+
 module.exports = {
     getAllContactController,
-    postNewContactController
+    postNewContactController,
+    getSingleContact,
+    deleteContact
 }
