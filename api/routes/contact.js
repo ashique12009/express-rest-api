@@ -8,12 +8,7 @@ router.post('/', contactController.postNewContactController);
 
 router.get('/:id', contactController.getSingleContact);
 
-router.put('/:id', (req, res, next) => {
-    const id = req.params.id;
-    res.status(200).json({
-
-    });
-});
+router.put('/:id', contactController.editContact);
 
 router.delete('/:id', contactController.deleteContact);
 

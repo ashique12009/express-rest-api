@@ -70,9 +70,34 @@ const deleteContact = (req, res, next) => {
         });
 }
 
+const editContact = (req, res, next) => {
+    let id = req.params.id;
+
+    let updatedContact = {
+        name: req.body.name,
+        phone: req.body.phone,
+        email: req.body.email
+    }
+
+    Contact.findByIdAndUpdate(id, {$set: updatedContact})
+        .then(data => {
+            res.status(200).json({
+                message: 'Data updated',
+                data: data
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: 'Error',
+                data: err
+            });
+        });
+}
+
 module.exports = {
     getAllContactController,
     postNewContactController,
     getSingleContact,
-    deleteContact
+    deleteContact,
+    editContact
 }
