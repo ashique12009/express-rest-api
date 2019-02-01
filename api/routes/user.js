@@ -4,9 +4,7 @@ const userController = require('../controllers/user');
 
 router.get('/users', userController.getAllUser);
 
-router.post('/login', (req, res, next) => {
-
-});
+router.post('/login', userController.loginController);
 
 router.post('/register', userController.registerController);
 
